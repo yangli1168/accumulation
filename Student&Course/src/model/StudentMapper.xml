@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.StudentMapper">
+ 	<insert id="add" parameterType="model.Student" useGeneratedKeys="true" keyProperty="id">
+ 		insert into student
+ 		(
+ 			name,
+ 			sex,
+ 			pwd,
+ 			phone,
+ 			grade,
+ 			photo
+ 		)
+ 		values
+ 		(
+ 			#{name},
+ 			#{sex},
+ 			#{pwd},
+ 			#{phone},
+ 			#{grade},
+ 			#{photo}
+ 		)
+ 	</insert>
+ 	
+ 	<!-- 查询单项 -->
+ 	<select id="getone" resultType="model.Student">
+ 		select * from student where id=#{id}
+ 	</select>
+ 	
+ 	<select id="get" parameterType="int" resultMap="s">
+ 		select 
+ 		 	sid,sname,ssex,sphone,sgrade,sphoto,
+ 		 	c.id cid,
+ 		 	c.name cname,
+ 		 	c.type ctype,
+ 		 	c.hours chours
+ 		 from
+	 		(
+		 		select 
+					s.id sid,
+					s.name sname,
+					s.sex ssex,
+					s.pwd spwd,
+					s.phone sphone,
+					s.grade sgrade,
+					s.photo sphoto,
+					sc.cid  sccid
+				from 
+					student s
+				left join
+					student_course sc
+				on
+				   s.id=sc.sid
+			) temp
+		left join
+		  	course c
+		 on
+		    temp.sccid=c.id
+		 where
+		 	sid=#{id}
+ 	</select>
+ 	<!-- 配置resultMap -->
+ 	<resultMap type="model.Student" id="s">
+ 		<id property="id" column="sid"/>
+ 		<result property="name" column="sname"/>
+ 		<result property="sex" column="ssex"/>
+ 		<result property="pwd" column="spwd"/>
+ 		<result property="phone" column="sphone"/>
+ 		<result property="grade" column="sgrade"/>
+ 		<result property="photo" column="sphoto"/>
+ 		<!-- 配置与student关联的contact -->
+ 		<collection property="courses" ofType="model.Course">
+ 			<id property="id" column="cid"/>
+ 			<result property="name" column="cname"/>
+	 		<result property="type" column="ctype"/>
+	 		<result property="hours" column="chours"/>
+ 		</collection>
+ 	</resultMap>
+ 	
+ 	<delete id="delete">
+ 		delete from student where id=#{id}
+ 	</delete>
+ 	
+ 	<update id="update1" parameterType="model.Student">
+ 		update student set pwd=#{pwd},grade=#{grade} where id=#{id}
+ 	</update>
+ 	<!-- 修改主表主键时，将从表contact的设计中-外键-更新时的设置为CASCADE -->
+ 	<update id="update2" parameterType="model.Student">
+ 		update student set id=#{id} where name=#{name}
+ 	</update>
+ 	
+</mapper>
