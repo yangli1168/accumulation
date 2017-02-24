@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>booksystem</display-name>
+ 
+ <!-- SSM整合步骤 -->
+ <!-- 1、启动Web容器时，自动装配ApplicationContext的配置信息，关闭时卸载   --> 
+ 	<listener>
+  		  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  	</listener>   
+ <!-- 2、指定配置文件的位置和名字，默认/非默认 ，下面为默认【可省略】-->
+ 	<context-param>
+        <param-name>contextConfigLocation</param-name>
+        <!-- 默认方式 -->
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+      <!-- 非默认方式下，classpath标识src目录下 
+        <param-value>classpath:spring/applicationContext.xml</param-value>
+      -->
+ 	</context-param>   
+  
+  <!-- Spring MVC servlet配置 【默认方式】-->
+<servlet>
+    <servlet-name>spring</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>spring</servlet-name>
+    <url-pattern>*.do</url-pattern>
+</servlet-mapping>
+
+<!-- Spring MVC servlet配置非默认方式【直接指定位置和名字】 
+  <servlet>
+    <servlet-name>SpringMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SpringMVC</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+-->
+
+<!-- Spring字符集过滤器 -->
+<filter>
+	<filter-name>SpringEncodingFilter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+	<init-param>
+		<param-name>forceEncoding</param-name>
+		<param-value>true</param-value>
+	</init-param>
+</filter>
+<filter-mapping>
+	<filter-name>SpringEncodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+</web-app>

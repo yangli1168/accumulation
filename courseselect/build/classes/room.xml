@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 设置开发模式 -->
+   <!--  <constant name="struts.devMode" value="true" /> -->
+    
+    <!-- 具体配置 -->
+	<package name="room" namespace="/room" extends="all">
+		<action name="*" class="net.xinqushi.action.RoomAction" method="{1}">
+			<result name="roommain">/room.jsp</result>
+		</action>
+	</package>
+</struts>

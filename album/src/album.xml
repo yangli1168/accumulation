@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="album" namespace="/album" extends="all">
+    	<!-- action配置 -->
+    	<action name="*" class="net.xinqushi.action.AlbumAction" method="{1}">
+    		<!-- 跳转配置 -->
+    		<result name="album">/album.jsp</result>
+    		<result name="total">/album/total.jsp</result>
+    		<result name="photos">/album/photos.jsp</result>
+    	</action>
+    </package>
+</struts>

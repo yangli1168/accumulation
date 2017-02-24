@@ -1,0 +1,31 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory >
+		 <!-- Database connection settings -->
+		 <!-- 配置连接参数 -->
+     	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/t_curricula?useSSL=false</property> 				
+		<property name="connection.username">root</property> 				
+		<property name="connection.password">yangli</property>  			
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> 		
+		<property name="show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <!-- 配置是否自动创建数据库表【数据库还是要手动创建】 -->
+        <property name="hbm2ddl.auto">update</property>	
+        
+        <!-- mapping配置  -->
+        <!--  1、xml方式  【该方式下xml文件必须与student类位于同一个包下】【测试用】-->
+       <!--  <mapping resource="net/xinqushi/pojo/Student.hbm.xml"/> -->
+       	
+        <!-- 2、注解方式  【该方式须在类中添加注解】	-->
+        <mapping class="net.xinqushi.pojo.Student"/>
+        <mapping class="net.xinqushi.pojo.Contact"/>
+        <mapping class="net.xinqushi.pojo.Room"/>
+        <mapping class="net.xinqushi.pojo.Course"/>
+        <mapping class="net.xinqushi.pojo.Teacher"/>       	
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--当在mybatis-config.xml中设置usermapper类文件的映射时，namespace的名称必须和
+类名相同，否则报错  -->
+<mapper namespace="net.xinqushi.mapper.UserMapper">
+	<select id="isExists" parameterType="net.xinqushi.pojo.Book" resultType="int">
+		select count(*) from user where name=#{name} and pwd=#{pwd}
+	</select>
+</mapper>

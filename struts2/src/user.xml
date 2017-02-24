@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="user" namespace="/user" extends="all">
+		<!-- 1、多个action类时配置方式 <action name="checkLogin" class="model.CheckLoginAction" 
+			method="execute"></action> <action name="checkexists" class="model.CheckExistsAction"></action> 
+			<action name="adduser" class="model.AddUserAction"> <result name="success">/userlist.jsp</result> 
+			</action> -->
+		<!-- 2、1个action类时配置方式 <action name="checkLogin" class="model.UserAction" 
+			method="checkLogin"></action> <action name="checkexists" class="model.UserAction" 
+			method="checkExists"></action> <action name="adduser" class="model.UserAction" 
+			method="add"> <result name="success">/userlist.jsp</result> </action> -->
+		<!-- 3、感叹号配置多个action的方式 <action name="user" class="model.UserAction"> <result 
+			name="success">/userlist.jsp</result> </action> -->
+		<!-- 4、通配符配置多个action的方式 -->
+		<action name="*" class="net.xinqushi.action.UserAction" method="{1}">
+			<result name="success">/WEB-INF/user/userlist.jsp</result>
+			<result name="modify">/WEB-INF/user/modify.jsp</result>
+			<!-- 常用转向地址，在配置global-results后进行省略 <result name="list" type="redirectAction">list</result> -->
+		</action>
+	</package>
+
+</struts>

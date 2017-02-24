@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- student映射配置 -->
+<hibernate-mapping package="net.xinqushi.pojo">
+	<class name="Student" table="student">
+		<!-- id属性配置 -->
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		<!-- 其它属性配置 -->
+		<property name="name" column="name" length="50"></property>
+		<!-- 当name与column名称一致时，可省略column -->
+		<property name="pwd" length="50"></property>
+		<property name="sex" length="10"></property>
+		<property name="phone" length="50"></property>
+		<property name="grade" length="50"></property>
+		<property name="photo" length="255"></property>		
+	</class>
+</hibernate-mapping>

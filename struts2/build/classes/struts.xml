@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 开发模式设置 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 上传文件大小控制 -->
+	<constant name="struts.multipart.maxSize" value="10000000"></constant>
+	
+	<!-- 配置动态方法调用 ， 配合action！配置方式 -->
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" />  -->
+	
+	<!--  -->
+	<package name="all" namespace="" extends="struts-default">
+		<global-results>
+			<result name="list" type="redirectAction">
+				<param name="namespace">/user</param>
+				<param name="actionName">list</param>
+			</result>
+		</global-results>
+	</package>
+	
+	<!-- 配置包含xml -->
+	<include file="user.xml"></include>
+	<include file="picture.xml"></include>
+	
+<!-- 分别配 置uer.xml和picture.xml时省略
+	<package name="user" namespace="/user" extends="all"> 
+		1、多个action类时配置方式 
+		<action name="checkLogin" class="model.CheckLoginAction" method="execute"></action> 
+		<action name="checkexists" class="model.CheckExistsAction"></action> 
+		<action name="adduser" class="model.AddUserAction"> 
+			<result name="success">/userlist.jsp</result> 
+		</action> 
+		2、1个action类时配置方式
+		 <action name="checkLogin" class="model.UserAction" method="checkLogin"></action> 
+		 <action name="checkexists" class="model.UserAction" method="checkExists"></action> 
+		 <action name="adduser" class="model.UserAction" method="add"> 
+		 	<result name="success">/userlist.jsp</result> 
+		 </action> 
+		3、感叹号配置多个action的方式 
+		<action name="user" class="model.UserAction"> 
+			<result name="success">/userlist.jsp</result> 
+		</action> 
+		4、通配符配置多个action的方式 
+		<action name="*" class="model.UserAction" method="{1}"> 
+			<result name="success" >/WEB-INF/user/userlist.jsp</result> 
+			<result name="modify" >/WEB-INF/user/modify.jsp</result> 	
+			常用转向地址，在配置global-results后进行省略 
+			<result name="list" type="redirectAction">list</result> 
+		</action> 
+	</package> 
+	
+	picture.xml配置
+	<package name="picture" namespace="/picture" extends="all"> 
+		<action name="*" class="mypicture.PictureAction" method="{1}"> </action> 
+	</package>  -->
+</struts>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 设置开发模式 -->
+  <!--   <constant name="struts.devMode" value="true" /> -->
+    
+    <!-- 具体配置 -->
+	<package name="student" namespace="/student" extends="all">
+		<action name="*" class="net.xinqushi.action.StudentAction" method="{1}">
+			<!-- 设置用户验证失败时的转向页面 -->
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+</struts>

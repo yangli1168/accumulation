@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 设置开发模式 -->
+   <!--  <constant name="struts.devMode" value="true" /> -->
+    
+    <!-- 具体配置 -->
+    <package name="all" namespace="/" extends="struts-default">
+    	<!-- 表单拦截配置 -->
+    	<interceptors>
+    		<!-- 自定义拦截 -->
+    		<interceptor-stack name="mystack">
+    			<!-- 设置自定义拦截继承与默认 -->
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    			<!-- 方式一：tokenSession方式，此方式不需要配置error.jsp页面
+    			<interceptor-ref name="tokenSession">
+    			 -->
+    			<!-- 方式二：token方式，需要配置error.jsp页面 -->
+    			<interceptor-ref name="token">
+	    			<!-- 配置需要拦截的action方法 -->
+	    			<param name="includeMethods">update</param>
+    			</interceptor-ref>    			
+    		</interceptor-stack>    		
+    	</interceptors>    	
+    	<!-- 将自定义拦截器设置为默认 -->
+    	<default-interceptor-ref name="mystack"></default-interceptor-ref>
+    	
+    	<!-- 全局跳转页面配置 -->
+    	<global-results>
+    		<result name="main">/main.jsp</result>
+    		<result name="admin">/admin.jsp</result>
+    		<!-- 当拦截器为token方式时，配置error.jsp -->
+    		<result name="invalid.token">/error.jsp</result>
+    	</global-results>    	
+    </package>
+    
+    <!-- 包含配置 -->
+    <include file="student.xml"></include>
+    <include file="contact.xml"></include>
+    <include file="course.xml"></include>
+    <include file="room.xml"></include>
+    <include file="teacher.xml"></include>
+</struts>

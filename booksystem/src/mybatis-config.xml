@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 使用外置文件方式配置数据库连接参数 -->
+	<properties resource="db.properties"></properties>
+	<environments default="development">	
+	<!-- 对事务的管理和连接池的配置 -->  
+		<!-- 此处id名称须与mybatisutil类中的sessionFactory属性相同 -->
+		<environment id="users">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${db.driver}"/>
+				<property name="url" value="${db.url}"/>
+				<property name="username" value="${db.username}"/>
+				<property name="password" value="${db.password}"/>
+			</dataSource>
+		</environment>
+		</environments>
+		<mappers>
+			<mapper class="net.xinqushi.mapper.UserMapper"/>
+			<mapper class="net.xinqushi.mapper.BookMapper"/>
+		</mappers>
+</configuration>
