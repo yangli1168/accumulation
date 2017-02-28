@@ -9,3 +9,6 @@
 3、courseselect
 3.1 ssh
 3.2 
+
+4、genarotor
+4.1 mybatis代码生成工具
